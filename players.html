@@ -63,76 +63,102 @@
         .section-padding { padding: 6rem 5%; }
         .player-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 1rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1400px) {
+            .player-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (max-width: 1100px) {
             .player-grid { grid-template-columns: repeat(3, 1fr); }
         }
-        @media (max-width: 900px) {
+        @media (max-width: 800px) {
             .player-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 600px) {
+        @media (max-width: 500px) {
             .player-grid { grid-template-columns: 1fr; }
         }
 
         .player-card {
             position: relative;
-            background: #fff;
-            border: 1px solid #111;
+            background: #1a1a1a;
+            border: 1px solid #333;
             overflow: hidden;
             transition: 0.3s;
         }
         
         .player-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+            border-color: #e50914;
         }
 
         .player-img-container {
             width: 100%;
             height: 400px;
-            background: #e6f01c; /* Yellow background like image */
+            background: linear-gradient(180deg, #0a0a0a 0%, #2a0505 100%);
             display: flex;
             align-items: flex-end;
             justify-content: center;
             overflow: hidden;
-            border-bottom: 2px solid #111;
+            border-bottom: 3px solid #e50914;
+            position: relative;
+        }
+
+        .player-img-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(229, 9, 20, 0.15), transparent);
+            pointer-events: none;
         }
 
         .player-img-container img {
             max-width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
         .player-card:hover .player-img-container img {
-            scale: 1.05;
+            transform: scale(1.05);
         }
 
         .player-info {
-            padding: 1.2rem;
-            text-align: left;
+            padding: 1.5rem;
+            text-align: center;
+            background: #1a1a1a;
         }
 
         .player-nickname {
-            font-size: 1.8rem;
-            color: #000;
+            font-size: 2rem;
+            color: #fff;
             margin-top: 0.2rem;
             font-weight: 900;
-            font-family: 'Barlow', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .player-card:hover .player-nickname {
+            color: #e50914;
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
         }
 
         .player-fullname {
-            color: #444;
-            font-size: 0.9rem;
+            color: #888;
+            font-size: 0.8rem;
             font-weight: 500;
-            text-transform: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .player-role {
@@ -181,6 +207,17 @@
                 </div>
             </div>
 
+            <!-- Player: YESicaN -->
+            <div class="player-card" data-images='["assets/YESicaN/Valorant.0758.png", "assets/YESicaN/Valorant.0761.png", "assets/YESicaN/Valorant.0762.png", "assets/YESicaN/Valorant.0766.png", "assets/YESicaN/Valorant.0776.png", "assets/YESicaN/Valorant.0784.png"]'>
+                <div class="player-img-container">
+                    <img src="assets/YESicaN/Valorant.0758.png" alt="YESicaN">
+                </div>
+                <div class="player-info">
+                    <p class="player-fullname">Đinh Đình Đạt</p>
+                    <h3 class="player-nickname">YESicaN</h3>
+                </div>
+            </div>
+
             <!-- Player: f1cio -->
             <div class="player-card" data-images='["assets/f1cio/Valorant.0685.png", "assets/f1cio/Valorant.0688.png", "assets/f1cio/Valorant.0691.png", "assets/f1cio/Valorant.0695.png", "assets/f1cio/Valorant.0699.png", "assets/f1cio/Valorant.0718.png"]'>
                 <div class="player-img-container">
@@ -189,28 +226,6 @@
                 <div class="player-info">
                     <p class="player-fullname">Hoàng Ngọc Sơn</p>
                     <h3 class="player-nickname">f1cio</h3>
-                </div>
-            </div>
-
-            <!-- Player: Kawa -->
-            <div class="player-card" data-images='["assets/Kawa/_0001_8.png", "assets/Kawa/_0002_7.png", "assets/Kawa/_0003_6 (1).png", "assets/Kawa/_0004_5.png", "assets/Kawa/_0008_1.png"]'>
-                <div class="player-img-container">
-                    <img src="assets/Kawa/_0004_5.png" alt="Kawa">
-                </div>
-                <div class="player-info">
-                    <p class="player-fullname">Phan Anh Huy</p>
-                    <h3 class="player-nickname">Kawa</h3>
-                </div>
-            </div>
-
-            <!-- Player: nia -->
-            <div class="player-card" data-images='["assets/nia/NIA/IMG_6070.JPG", "assets/nia/NIA/IMG_6071.JPG", "assets/nia/NIA/IMG_6072.JPG", "assets/nia/NIA/IMG_6073.JPG", "assets/nia/NIA/_NK_0270.jpeg"]'>
-                <div class="player-img-container">
-                    <img src="assets/nia/NIA/_NK_0270.jpeg" alt="nia">
-                </div>
-                <div class="player-info">
-                    <p class="player-fullname">Trình Huỳnh Thiên Ân</p>
-                    <h3 class="player-nickname">nia</h3>
                 </div>
             </div>
 
@@ -225,14 +240,14 @@
                 </div>
             </div>
 
-            <!-- Player: YESicaN -->
-            <div class="player-card" data-images='["assets/YESicaN/Valorant.0758.png", "assets/YESicaN/Valorant.0761.png", "assets/YESicaN/Valorant.0762.png", "assets/YESicaN/Valorant.0766.png", "assets/YESicaN/Valorant.0776.png", "assets/YESicaN/Valorant.0784.png"]'>
+            <!-- Player: nia -->
+            <div class="player-card" data-images='["assets/nia/IMG_6070.png", "assets/nia/IMG_6071.png", "assets/nia/IMG_6072.png", "assets/nia/IMG_6073.png", "assets/nia/_NK_0270.png"]'>
                 <div class="player-img-container">
-                    <img src="assets/YESicaN/Valorant.0758.png" alt="YESicaN">
+                    <img src="assets/nia/IMG_6072.png" alt="nia">
                 </div>
                 <div class="player-info">
-                    <p class="player-fullname">Đinh Đình Đạt</p>
-                    <h3 class="player-nickname">YESicaN</h3>
+                    <p class="player-fullname">Trình Huỳnh Thiên Ân</p>
+                    <h3 class="player-nickname">nia</h3>
                 </div>
             </div>
 
@@ -244,6 +259,17 @@
                 <div class="player-info">
                     <p class="player-fullname">Tô Minh Long</p>
                     <h3 class="player-nickname">mihlog</h3>
+                </div>
+            </div>
+
+            <!-- Player: Kawa -->
+            <div class="player-card" data-images='["assets/Kawa/_0001_8.png", "assets/Kawa/_0002_7.png", "assets/Kawa/_0003_6 (1).png", "assets/Kawa/_0004_5.png", "assets/Kawa/_0008_1.png"]'>
+                <div class="player-img-container">
+                    <img src="assets/Kawa/_0004_5.png" alt="Kawa">
+                </div>
+                <div class="player-info">
+                    <p class="player-fullname">Phan Anh Huy</p>
+                    <h3 class="player-nickname">Kawa</h3>
                 </div>
             </div>
         </div>
@@ -261,15 +287,19 @@
         document.querySelectorAll('.player-card').forEach(card => {
             const img = card.querySelector('img');
             const images = JSON.parse(card.dataset.images);
-            let originalSrc = img.src;
+            const defaultSrc = img.getAttribute('src');
 
             card.addEventListener('mouseenter', () => {
-                const randomImg = images[Math.floor(Math.random() * images.length)];
-                img.src = randomImg;
+                const filteredImages = images.filter(src => src !== defaultSrc);
+                
+                if (filteredImages.length > 0) {
+                    const randomImg = filteredImages[Math.floor(Math.random() * filteredImages.length)];
+                    img.src = randomImg;
+                }
             });
 
             card.addEventListener('mouseleave', () => {
-                img.src = originalSrc;
+                img.src = defaultSrc;
             });
         });
     </script>
