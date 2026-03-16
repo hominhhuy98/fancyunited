@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+        <!-- Google Fonts: Orbitron & Barlow -->
+        <link href="https://fonts.googleapis.com/css?family=Orbitron:700,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANCY UNITED ESPORTS | Official Website</title>
+    <style>
+        @font-face {
+            font-family: 'CyberdyneCondensed';
+            src: url('assets/CyberdyneCondensed-9DaK.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* CSS Reset & Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #111; color: #fff; line-height: 1.6; overflow-x: hidden; font-family: 'Barlow', Arial, sans-serif; }
+        h1, h2, h3 { text-transform: uppercase; letter-spacing: 2px; }
+            h1, h2, h3, .nav-links a { font-family: 'Orbitron', Arial, sans-serif; font-weight: 700; }
+        .accent-red { color: #e50914; }
+        .accent-gold { color: #ffd700; }
+        .fancy-font { font-family: 'CyberdyneCondensed', sans-serif; font-weight: normal; }
+        .hero-content h1 .fancy-font { font-size: 6rem; display: block; margin-top: 0.5rem; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: rgba(0, 0, 0, 0.95); position: fixed; width: 100%; z-index: 100; border-bottom: 1px solid #333; }
+        .logo img { height: 80px; }
+
+                .brand-title {
+                    display: flex;
+                    align-items: center;
+                    font-size: 2.2rem;
+                    font-family: 'CyberdyneCondensed', sans-serif;
+                    font-weight: normal;
+                    color: #ffd700;
+                    margin-left: 18px;
+                    letter-spacing: 2px;
+                    height: 80px;
+                }
+                nav {
+                    display: flex;
+                    align-items: center;
+                    gap: 18px;
+                    justify-content: flex-start;
+                }
+        .nav-links { display: flex; align-items: center; margin-left: auto; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 2rem; font-weight: bold; transition: color 0.3s ease; cursor: pointer; }
+        .nav-links a:hover { color: #ffd700; }
+        
+        /* Cart Button */
+        .cart-btn { background: #e50914; padding: 0.5rem 1rem; border-radius: 4px; border: none; color: white; font-weight: bold; cursor: pointer; margin-left: 2rem; transition: 0.3s; }
+        .cart-btn:hover { background: #ffd700; color: #000; }
+        #cart-count { background: white; color: red; padding: 2px 6px; border-radius: 50%; font-size: 0.8rem; margin-left: 5px; }
+
+        /* Hero Section */
+        .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -2; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: -1; }
+        .hero-content h1 { font-size: 4rem; margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 2rem; color: #ddd; }
+        .btn { display: inline-block; padding: 1rem 2.5rem; background: #e50914; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: bold; border-radius: 4px; transition: 0.3s; border: none; cursor: pointer; }
+        .btn:hover { background: #ffd700; color: #000; transform: scale(1.05); }
+
+        /* Sections */
+        .section-padding { padding: 6rem 5%; }
+        .about-section { background: #1a1a1a; text-align: center; }
+        .about-section h2, .section-title { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
+        .about-text { max-width: 800px; margin: 0 auto; color: #ccc; font-size: 1.1rem; }
+
+        /* Shop Grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .product-card { background: #222; border: 1px solid #333; border-radius: 8px; padding: 1.5rem; text-align: center; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); border-color: #ffd700; }
+        .product-card img { max-width: 100%; height: 200px; object-fit: contain; margin-bottom: 1rem; }
+        .product-title { font-size: 1.1rem; margin-bottom: 0.5rem; min-height: 50px;}
+        .product-price { font-size: 1.3rem; color: #ffd700; font-weight: bold; margin-bottom: 1rem; }
+        .add-to-cart-btn { width: 100%; padding: 0.8rem; background: #333; color: white; border: 1px solid #555; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .add-to-cart-btn:hover { background: #e50914; border-color: #e50914; }
+
+        /* Cart Modal (Sidebar) */
+        #cart-sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #111; border-left: 2px solid #333; z-index: 1000; padding: 2rem; transition: right 0.3s ease; overflow-y: auto; }
+        #cart-sidebar.open { right: 0; }
+        .close-cart { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; float: right; }
+        .cart-header { font-size: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1rem; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: #222; padding: 1rem; border-radius: 4px; }
+        .cart-total { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem; text-align: right; color: #ffd700; }
+        .checkout-btn { width: 100%; padding: 1rem; background: #e50914; color: white; border: none; font-size: 1.2rem; font-weight: bold; margin-top: 1rem; cursor: pointer; }
+        .checkout-btn:hover { background: #ffd700; color: #000; }
+
+        /* Footer */
+        footer { background: #000; padding: 3rem 5%; text-align: center; border-top: 1px solid #333; }
+        footer img { height: 30px; margin-bottom: 1rem; }
+        .copyright { color: #666; font-size: 0.9rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><img src="assets/logo.png" alt="Fancy United Logo"></div>
+        <div class="brand-title">FANCY UNITED ESPORTS</div>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#shop">SHOP</a>
+            <button class="cart-btn" onclick="toggleCart()">CART <span id="cart-count">0</span></button>
+        </div>
+    </nav>
+
+    <div id="cart-sidebar">
+        <button class="close-cart" onclick="toggleCart()">×</button>
+        <h2 class="cart-header">YOUR GEAR</h2>
+        <div id="cart-items-container">
+            <p style="color: #888;">Your cart is empty.</p>
+        </div>
+        <div class="cart-total">Total: <span id="cart-total-price">0</span> VND</div>
+        <button class="checkout-btn" onclick="checkout()">PROCEED TO CHECKOUT</button>
+    </div>
+
+    <header id="home" class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="assets/victory.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>WE ARE <span class="accent-gold fancy-font">FANCY UNITED</span></h1>
+            <p>ASIA PACIFIC CHAMPIONS. UNSTOPPABLE. FEARLESS.</p>
+            <a href="#shop" class="btn">GEAR UP NOW</a>
+        </div>
+    </header>
+
+    <section id="about" class="section-padding about-section">
+        <h2>Built on <span class="accent-red">Passion</span>. Forged in <span class="accent-gold">Victory</span>.</h2>
+        <div class="about-text">
+            <p>Fancy United Esports is more than just a competitive team. We are the embodiment of Vietnamese passion and ambition on the global stage. Fueled by a relentless fighting spirit, we constantly push our limits to showcase our talent and bring glory to our nation. At Fancy, every effort and every victory beats to a single rhythm: Dedicated to Vietnam, proud to be Vietnamese.</p>
+        </div>
+    </section>
+
+    <section id="shop" class="section-padding">
+        <h2 class="section-title">THE <span class="accent-gold">ARMORY</span></h2>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="assets/jersey.png" alt="Pro Jersey">
+                <h3 class="product-title">Official Pro Jersey (White/Red/Gold)</h3>
+                <div class="product-price">580.000 VND</div>
+                <button class="add-to-cart-btn" onclick="addToCart('Official Pro Jersey', 580000)">ADD TO CART</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/Arm sleeve 1.png" alt="Dark Tech Arm Sleeve">
+                <h3 class="product-title">Arm Sleeve: Dark Tech Edition</h3>
+                <div class="product-price">230.000 VND</div>
+                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Dark Tech', 230000)">ADD TO CART</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/Arm sleeve 2.png" alt="Fearless Dark Arm Sleeve">
+                <h3 class="product-title">Arm Sleeve: Fearless Dark Edition</h3>
+                <div class="product-price">230.000 VND</div>
+                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Fearless Dark', 230000)">ADD TO CART</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/Arm sleeve 3.png" alt="Fearless Light Arm Sleeve">
+                <h3 class="product-title">Arm Sleeve: Fearless Light Edition</h3>
+                <div class="product-price">230.000 VND</div>
+                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Fearless Light', 230000)">ADD TO CART</button>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/Arm sleeve 4.png" alt="Light Tech Arm Sleeve">
+                <h3 class="product-title">Arm Sleeve: Light Tech Edition</h3>
+                <div class="product-price">230.000 VND</div>
+                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Light Tech', 230000)">ADD TO CART</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="assets/logo.png" alt="Fancy United Logo">
+        <div class="copyright">
+            &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
+            <i>Note: This is a concept website.</i>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        // Add item to cart
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            updateCartUI();
+            
+            // Optional: Provide visual feedback
+            alert(productName + " đã được thêm vào giỏ hàng!");
+        }
+
+        // Remove item from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // Update Cart Display & Totals
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const countSpan = document.getElementById('cart-count');
+            const totalSpan = document.getElementById('cart-total-price');
+            
+            // Update Count
+            countSpan.innerText = cart.length;
+
+            // Clear current display
+            container.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: #888;">Your cart is empty.</p>';
+            } else {
+                // Populate items
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <div>
+                                <div style="font-weight:bold; font-size:0.9rem;">${item.name}</div>
+                                <div style="color:#ffd700;">${item.price.toLocaleString('vi-VN')} VND</div>
+                            </div>
+                            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">X</button>
+                        </div>
+                    `;
+                });
+            }
+
+            // Update Total Price (Format as Vietnamese currency)
+            totalSpan.innerText = total.toLocaleString('vi-VN');
+        }
+
+        // Toggle Sidebar open/close
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Checkout Placeholder
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Giỏ hàng của bạn đang trống!");
+            } else {
+                alert("Cảm ơn bạn! (Đây là bản demo nên chức năng thanh toán chưa được kết nối)");
+                cart = []; // Empty cart
+                updateCartUI();
+                toggleCart(); // Close sidebar
+            }
+        }
+    </script>
+</body>
+</html>

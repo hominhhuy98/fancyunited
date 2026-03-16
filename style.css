@@ -1,0 +1,48 @@
+/* Logo overlay in front of banner */
+.logo-overlay {
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 300px;
+    border-top: 5px solid var(--fancy-gold);
+}
+
+.product img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.product h3 {
+    margin: 15px 0 5px;
+}
+
+.product p {
+    color: var(--fancy-red);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.btn-small {
+    background-color: var(--fancy-dark);
+    color: var(--fancy-gold);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.btn-small:hover {
+    background-color: var(--fancy-red);
+    color: white;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+    border-top: 1px solid #333;
+}
