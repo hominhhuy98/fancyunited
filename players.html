@@ -26,26 +26,52 @@
         nav { 
             display: flex; 
             align-items: center; 
-            padding: 1.5rem 5%; 
-            background: rgba(0, 0, 0, 0.95); 
+            padding: 1rem 5%; 
+            background: linear-gradient(180deg, #0a0a0a 0%, #161616 100%); 
             position: fixed; 
             width: 100%; 
             z-index: 100; 
-            border-bottom: 1px solid #333; 
-            gap: 18px;
+            border-bottom: 1px solid #222; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
             justify-content: flex-start;
+            gap: 20px;
         }
-        .logo img { height: 80px; }
+        .logo img { height: 70px; transition: 0.3s; }
+        .logo img:hover { transform: scale(1.05); }
+
         .brand-title {
             font-size: 2.2rem;
             font-family: 'CyberdyneCondensed', sans-serif;
             color: #ffd700;
             letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
         }
         .nav-links { display: flex; align-items: center; margin-left: auto; }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 2rem; font-weight: bold; transition: color 0.3s ease; }
+        .nav-links a { 
+            color: #fff; 
+            text-decoration: none; 
+            margin-left: 2rem; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: 0.3s;
+        }
         .nav-links a:hover { color: #ffd700; }
-        .nav-links a.active { color: #ffd700; border-bottom: 2px solid #ffd700; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: #ffd700; }
+        .nav-links a.active::after { width: 100%; }
 
         /* Players Section */
         .players-hero {
