@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- Google Fonts: Orbitron & Barlow -->
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP | FANCY UNITED ESPORTS</title>
+    <style>
+        @font-face {
+            font-family: 'CyberdyneCondensed';
+            src: url('assets/CyberdyneCondensed-9DaK.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* CSS Reset & Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #111; color: #fff; line-height: 1.6; overflow-x: hidden; font-family: 'Barlow', Arial, sans-serif; }
+        h1, h2, h3 { text-transform: uppercase; letter-spacing: 2px; font-family: 'Orbitron', Arial, sans-serif; font-weight: 700; }
+        .accent-red { color: #e50914; }
+        .accent-gold { color: #ffd700; }
+        
+        /* Navigation */
+        nav { 
+            display: flex; 
+            align-items: center; 
+            padding: 1rem 5%; 
+            background: linear-gradient(180deg, #0a0a0a 0%, #161616 100%); 
+            position: fixed; 
+            width: 100%; 
+            z-index: 100; 
+            border-bottom: 1px solid #222; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            justify-content: flex-start;
+            gap: 20px;
+        }
+        .logo img { height: 70px; transition: 0.3s; }
+        .logo img:hover { transform: scale(1.05); }
+
+        .brand-title {
+            font-size: 2.2rem;
+            font-family: 'CyberdyneCondensed', sans-serif;
+            letter-spacing: 2px;
+            background: linear-gradient(
+                to right, 
+                #bf953f 0%, 
+                #fcf6ba 25%, 
+                #b38728 50%, 
+                #fcf6ba 75%, 
+                #bf953f 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            animation: shine-sweep 3s linear infinite;
+        }
+
+        @keyframes shine-sweep {
+            to {
+                background-position: 200% center;
+            }
+        }
+        .nav-links { display: flex; align-items: center; margin-left: auto; }
+        .nav-links a { 
+            color: #fff; 
+            text-decoration: none; 
+            margin-left: 2rem; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            cursor: pointer; 
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: #ffd700; }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Cart Button */
+        .cart-btn { 
+            background: #e50914; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 2px; 
+            border: none; 
+            color: white; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-left: 2rem; 
+            transition: 0.3s; 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+        }
+        .cart-btn:hover { background: #ffd700; color: #000; box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); transform: translateY(-2px); }
+        #cart-count { background: white; color: red; padding: 2px 6px; border-radius: 50%; font-size: 0.7rem; margin-left: 5px; }
+        
+        /* Shop Styles */
+        .shop-container {
+            padding: 140px 5% 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .shop-header {
+            margin-bottom: 60px;
+        }
+
+        .shop-header h1 {
+            font-size: 4rem;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .shop-header p {
+            color: #ccc;
+            max-width: 900px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .shop-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 2px;
+        }
+
+        .filter-btn {
+            background: #000;
+            border: 1px solid #ffd700;
+            color: #fff;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-btn:hover {
+            background: #ffd700;
+            color: #000;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: linear-gradient(180deg, #161616 0%, #0a0a0a 100%);
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(229, 9, 20, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #e50914;
+            box-shadow: 0 15px 35px rgba(229, 9, 20, 0.15);
+        }
+
+        .product-card:hover::before { opacity: 1; }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: 0.5s;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        .product-info {
+            padding: 0;
+        }
+
+        .product-tags {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            background: #fff;
+            color: #000;
+            font-weight: bold;
+            border: 1px solid #000;
+            text-transform: uppercase;
+        }
+
+        .tag.new {
+            background: #ffd700;
+            border-color: #ffd700;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+            min-height: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Product Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            color: #000;
+            position: relative;
+            animation: modalFade 0.4s;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #000;
+            z-index: 10;
+        }
+
+        .modal-left {
+            flex: 1.2;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .modal-image-container {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .img-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: 2px solid #333;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .img-nav-btn:hover {
+            background: #ffd700;
+            color: #000;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        .modal-left img#modalImg {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            width: 100%;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 10px;
+            scrollbar-width: thin;
+        }
+
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #333;
+            cursor: pointer;
+            object-fit: contain;
+            background: #1a1a1a;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.6;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+            border-color: #666;
+        }
+
+        .thumbnail.active {
+            border-color: #ffd700;
+            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .modal-right {
+            flex: 1;
+            padding: 60px 40px;
+            background: #fff;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            color: #000;
+        }
+
+        .modal-price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .option-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .option-group {
+            margin-bottom: 25px;
+        }
+
+        .option-chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 8px 20px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+
+        .chip:hover {
+            border-color: #000;
+        }
+
+        .chip.active {
+            border-color: #000;
+            background: #000;
+            color: #fff;
+        }
+
+        .chip.disabled {
+            color: #ccc;
+            text-decoration: line-through;
+            cursor: not-allowed;
+            border-color: #eee;
+        }
+
+        .customize-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .customize-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .qty-selector {
+            display: flex;
+            border: 1px solid #ddd;
+        }
+
+        .qty-btn {
+            padding: 10px 15px;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .qty-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .add-cart-btn {
+            flex: 1;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            background: #333;
+        }
+
+        .accordion {
+            border-top: 1px solid #eee;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .accordion-header {
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .shipping-info {
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Modal */
+        @media (max-width: 992px) {
+            .modal-content {
+                flex-direction: column;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .modal-left, .modal-right {
+                flex: none;
+            }
+            .modal-right {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Cart Modal (Sidebar) */
+        #cart-sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #111; border-left: 2px solid #333; z-index: 2000; padding: 2rem; transition: right 0.3s ease; overflow-y: auto; color: white; }
+        #cart-sidebar.open { right: 0; }
+        .close-cart { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; float: right; }
+        .cart-header { font-size: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1rem; font-family: 'Orbitron', sans-serif; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: #222; padding: 1rem; border-radius: 4px; }
+        .cart-total { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem; text-align: right; color: #ffd700; font-family: 'Orbitron', sans-serif; }
+        .checkout-btn { width: 100%; padding: 1rem; background: #e50914; color: white; border: none; font-size: 1.2rem; font-weight: bold; margin-top: 1rem; cursor: pointer; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
+        .checkout-btn:hover { background: #ffd700; color: #000; }
+
+        /* Checkout Modal */
+        .checkout-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 3000;
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        .checkout-modal-overlay.active { display: flex; }
+        
+        .checkout-modal {
+            background: #111;
+            border: 1px solid #333;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .checkout-left {
+            padding: 2.5rem;
+            background: #161616;
+        }
+        
+        .checkout-right {
+            padding: 2.5rem;
+            background: #0a0a0a;
+            border-left: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkout-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .checkout-form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .checkout-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkout-form-group input, .checkout-form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            font-family: 'Barlow', sans-serif;
+            transition: 0.3s;
+        }
+
+        .checkout-form-group input:focus, .checkout-form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .order-summary-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #ccc;
+            background: #111;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #222;
+        }
+
+        .order-summary-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            background: #222;
+        }
+
+        .order-summary-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .order-summary-price {
+            color: #ffd700;
+            font-weight: bold;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .discount-section {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .discount-section input {
+            flex: 1;
+            padding: 0.8rem;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .discount-section button {
+            padding: 0 20px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .discount-section button:hover { background: #555; }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .order-summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+        }
+
+        .confirm-order-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(90deg, #b8860b, #ffd700);
+            color: #000;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-top: auto;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .confirm-order-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .close-checkout {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-modal { grid-template-columns: 1fr; }
+            .checkout-right { border-left: none; border-top: 1px solid #333; }
+        }
+
+        /* Footer */
+        footer { background: #000; padding: 4rem 5%; text-align: center; border-top: 1px solid #333; }
+        footer img { 
+            height: 120px; 
+            margin-bottom: 2rem; 
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        footer img:hover {
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
+            transform: scale(1.15) rotate(2deg);
+        }
+        .copyright { color: #888; font-size: 0.9rem; margin-top: 1rem; line-height: 1.8; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;"><img src="assets/logo.png" alt="Fancy United Logo"></div>
+        <div class="brand-title" onclick="window.location.href='index.html'" style="cursor: pointer;">FANCY UNITED ESPORTS</div>
+        <div class="nav-links">
+            <a href="index.html#home">HOME</a>
+            <a href="index.html#about">ABOUT</a>
+            <a href="players.html">PLAYERS</a>
+            <a href="shop.html" style="color: #ffd700;">SHOP</a>
+            <button class="cart-btn" onclick="toggleCart()">CART <span id="cart-count">0</span></button>
+        </div>
+    </nav>
+
+    <div id="cart-sidebar">
+        <button class="close-cart" onclick="toggleCart()">×</button>
+        <h2 class="cart-header">YOUR GEAR</h2>
+        <div id="cart-items-container">
+            <p style="color: #888;">Your cart is empty.</p>
+        </div>
+        <div class="cart-total">Total: <span id="cart-total-price">0</span> VND</div>
+        <button class="checkout-btn" onclick="openCheckout()">PROCEED TO CHECKOUT</button>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutOverlay" class="checkout-modal-overlay">
+        <div class="checkout-modal">
+            <button class="close-checkout" onclick="closeCheckout()">×</button>
+            
+            <div class="checkout-left">
+                <h2 class="checkout-title">BILLING DETAILS</h2>
+                <div class="checkout-form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your full name" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone number" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Shipping Address</label>
+                    <input type="text" placeholder="Street address, City, Province" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Payment Method</label>
+                    <select>
+                        <option value="cod">Cash on Delivery (COD)</option>
+                        <option value="bank">Bank Transfer</option>
+                        <option value="card">Credit / Debit Card</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkout-right">
+                <h2 class="checkout-title" style="border: none; color: #fff;">ORDER SUMMARY</h2>
+                <div id="checkout-summary-container" style="flex: 1; overflow-y: auto; max-height: 350px; padding-right: 10px;">
+                    <!-- Items will be populated here by JS -->
+                </div>
+
+                <div class="discount-section">
+                    <input type="text" placeholder="Discount Code">
+                    <button onclick="alert('Invalid or expired discount code.')">APPLY</button>
+                </div>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="checkout-subtotal">0 VND</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping Fee</span>
+                    <span>Free</span>
+                </div>
+
+                <div class="order-summary-total">
+                    <span>TOTAL</span>
+                    <span id="checkout-grand-total">0 VND</span>
+                </div>
+                <button class="confirm-order-btn" onclick="confirmOrder()">CONFIRM & PAY</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="shop-container">
+        <div class="shop-header">
+            <h1>FANCY UNITED SHOP</h1>
+            <p>Khám phá các sản phẩm chính thức của Fancy United Esports. Từ áo đấu thi đấu cho đến các phụ kiện độc quyền, hãy sở hữu ngay để ủng hộ đội tuyển của bạn.</p>
+        </div>
+
+        <div class="shop-controls">
+            <div class="filter-buttons">
+                <button class="filter-btn">FILTER</button>
+                <button class="filter-btn">SORT BY</button>
+            </div>
+            <div class="product-count">10 products</div>
+        </div>
+
+        <div class="product-grid">
+            <!-- Product 1: Jersey -->
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED PRO JERSEY 2026', '590.000₫', ['assets/jersey/jersey front.png', 'assets/jersey/jersey back.png', 'assets/jersey/z7629489619774_b2bcbbf45fcd94d792e76f284c296b9d.jpg', 'assets/jersey/z7629489620035_6dcc3413e76aea3ca84113d5b62b81a9.jpg', 'assets/jersey/z7629489632752_bda28ef4ae28df0f9cbb7d88d0a75e18.jpg', 'assets/jersey/z7629489637295_bd91c9a893a519166865c2108129e38f.jpg'], ['NEW', 'CUSTOMIZABLE'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag new">NEW</span>
+                        <span class="tag">CUSTOMIZABLE</span>
+                    </div>
+                    <img src="assets/jersey/jersey front.png" alt="Pro Jersey">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED PRO JERSEY 2026</h3>
+                    <p class="product-price">590.000₫</p>
+                </div>
+            </div>
+
+            <!-- Product 2: T-Shirt -->
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED OFFICIAL T-SHIRT', '790.000₫', ['assets/t-shirt/tshirt-front.png', 'assets/t-shirt/tshirt-back.png'], ['NEW', 'CLOTHING'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag new">NEW</span>
+                        <span class="tag">CLOTHING</span>
+                    </div>
+                    <img src="assets/t-shirt/tshirt-front.png" alt="Official T-Shirt">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED OFFICIAL T-SHIRT</h3>
+                    <p class="product-price">790.000₫</p>
+                </div>
+            </div>
+
+            <!-- Product 3: Tee -->
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED GRAPHIC TEE', '530.000₫', ['assets/Tee/tee-front.png', 'assets/Tee/tee-back.png', 'assets/Tee/4SC03736.jpg', 'assets/Tee/4SC03804.jpg', 'assets/Tee/4SC03822.jpg'], ['NEW', 'CLOTHING'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag new">NEW</span>
+                        <span class="tag">CLOTHING</span>
+                    </div>
+                    <img src="assets/Tee/tee-front.png" alt="Graphic Tee">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED GRAPHIC TEE</h3>
+                    <p class="product-price">530.000₫</p>
+                </div>
+            </div>
+
+            <!-- Arm Sleeves -->
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - RED EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 1.png'], ['ACCESSORY'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag">ACCESSORY</span>
+                    </div>
+                    <img src="assets/arm sleeve/Arm sleeve 1.png" alt="Arm Sleeve Red">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED ARM SLEEVE - RED EDITION</h3>
+                    <p class="product-price">200.000₫</p>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - GOLD EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 2.png'], ['ACCESSORY'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag">ACCESSORY</span>
+                    </div>
+                    <img src="assets/arm sleeve/Arm sleeve 2.png" alt="Arm Sleeve Gold">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED ARM SLEEVE - GOLD EDITION</h3>
+                    <p class="product-price">200.000₫</p>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - BLACK EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 3.png'], ['ACCESSORY'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag">ACCESSORY</span>
+                    </div>
+                    <img src="assets/arm sleeve/Arm sleeve 3.png" alt="Arm Sleeve Black">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED ARM SLEEVE - BLACK EDITION</h3>
+                    <p class="product-price">200.000₫</p>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - WHITE EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 4.png'], ['ACCESSORY'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag">ACCESSORY</span>
+                    </div>
+                    <img src="assets/arm sleeve/Arm sleeve 4.png" alt="Arm Sleeve White">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED ARM SLEEVE - WHITE EDITION</h3>
+                    <p class="product-price">200.000₫</p>
+                </div>
+            </div>
+
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED LOGO STICKER PACK', '50.000₫', 'assets/logo.png', ['MISC'])">
+                <div class="product-image">
+                    <div class="product-tags">
+                        <span class="tag">MISC</span>
+                    </div>
+                    <img src="assets/logo.png" alt="Fancy Sticker" style="width: 50%;">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">FANCY UNITED LOGO STICKER PACK</h3>
+                    <p class="product-price">50.000₫</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-left">
+                <div class="modal-image-container">
+                    <button class="img-nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
+                    <img id="modalImg" src="assets/jersey/jersey.png" alt="Product">
+                    <button class="img-nav-btn next-btn" onclick="changeImage(1)">&#10095;</button>
+                </div>
+                <div id="thumbnailContainer" class="thumbnail-container"></div>
+            </div>
+            <div class="modal-right">
+                <div id="modalTags" class="product-tags" style="position: static; margin-bottom: 10px;">
+                    <span class="tag new">NEW</span>
+                    <span class="tag">CUSTOMIZABLE</span>
+                </div>
+                <h2 id="modalTitle" class="modal-title">FANCY UNITED PRO JERSEY 2026</h2>
+                <div id="modalPrice" class="modal-price">590.000₫</div>
+
+                <div class="option-group">
+                    <div class="option-label">Teams</div>
+                    <div class="option-chips">
+                        <div class="chip active">Valorant</div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <div class="option-label">Size</div>
+                    <div class="option-chips">
+                        <div class="chip">XS</div>
+                        <div class="chip">S</div>
+                        <div class="chip active">M</div>
+                        <div class="chip">L</div>
+                        <div class="chip">XL</div>
+                        <div class="chip">XXL</div>
+                        <div class="chip disabled">3XL</div>
+                    </div>
+                </div>
+
+                <label class="customize-checkbox">
+                    <input type="checkbox">
+                    <span>Customize the jersey <small style="color:#888;">(+150.000₫)</small></span>
+                </label>
+
+                <div class="modal-actions">
+                    <div class="qty-selector">
+                        <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                        <input type="text" class="qty-input" value="1" readonly>
+                        <button class="qty-btn" onclick="updateQty(1)">+</button>
+                    </div>
+                    <button class="add-cart-btn" onclick="addToCartFromModal()">ADD TO CART</button>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">Description <span>&#8964;</span></div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Features <span>&#8964;</span></div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Maintenance <span>&#8964;</span></div>
+                    </div>
+                </div>
+
+                <div class="shipping-info">
+                    <span style="font-size: 1.2rem;">🚚</span>
+                    Fast delivery within 3 to 5 working days, these times may be extended depending on the destination.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <img src="assets/logo.png" alt="Fancy United Logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+        <div class="copyright">
+            &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
+            <i>Note: This is a concept website.</i>
+        </div>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('productModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalTags = document.getElementById('modalTags');
+        const thumbnailContainer = document.getElementById('thumbnailContainer');
+        const closeBtn = document.querySelector('.modal-close');
+        const qtyInput = document.querySelector('.qty-input');
+        
+        let currentImageIndex = 0;
+        let currentImageList = [];
+        let cart = [];
+
+        function openModal(title, price, imgList, tags) {
+            modalTitle.innerText = title;
+            modalPrice.innerText = price;
+            
+            // Set initial image
+            if (Array.isArray(imgList) && imgList.length > 0) {
+                currentImageList = imgList;
+                currentImageIndex = 0;
+                modalImg.src = currentImageList[currentImageIndex];
+                
+                // Build thumbnails
+                thumbnailContainer.innerHTML = '';
+                currentImageList.forEach((imgSrc, index) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = imgSrc;
+                    thumb.className = 'thumbnail' + (index === 0 ? ' active' : '');
+                    thumb.onclick = function() {
+                        setImage(index);
+                    };
+                    thumbnailContainer.appendChild(thumb);
+                });
+                thumbnailContainer.style.display = 'flex';
+                
+                // Show/hide nav buttons
+                document.querySelectorAll('.img-nav-btn').forEach(btn => btn.style.display = currentImageList.length > 1 ? 'flex' : 'none');
+
+            } else {
+                currentImageList = [imgList];
+                currentImageIndex = 0;
+                modalImg.src = currentImageList[currentImageIndex];
+                thumbnailContainer.style.display = 'none';
+                document.querySelectorAll('.img-nav-btn').forEach(btn => btn.style.display = 'none');
+            }
+            
+            // Clear and add tags
+            modalTags.innerHTML = '';
+            tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tag' + (tag === 'NEW' ? ' new' : '');
+                span.innerText = tag;
+                modalTags.appendChild(span);
+            });
+
+            qtyInput.value = 1;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function setImage(index) {
+            currentImageIndex = index;
+            modalImg.src = currentImageList[currentImageIndex];
+            
+            // Update thumbnails
+            const thumbs = document.querySelectorAll('.thumbnail');
+            thumbs.forEach(t => t.classList.remove('active'));
+            if(thumbs[currentImageIndex]) {
+                thumbs[currentImageIndex].classList.add('active');
+                
+                // Optional: Scroll thumbnail into view
+                thumbs[currentImageIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+
+        function changeImage(direction) {
+            if (currentImageList.length <= 1) return;
+            
+            let newIndex = currentImageIndex + direction;
+            
+            // Loop around
+            if (newIndex >= currentImageList.length) newIndex = 0;
+            if (newIndex < 0) newIndex = currentImageList.length - 1;
+            
+            setImage(newIndex);
+        }
+
+        function updateQty(val) {
+            let current = parseInt(qtyInput.value);
+            current += val;
+            if (current < 1) current = 1;
+            qtyInput.value = current;
+        }
+
+        // --- CART LOGIC ---
+        function addToCartFromModal() {
+            const name = modalTitle.innerText;
+            const priceText = modalPrice.innerText.replace(/[^0-9]/g, '');
+            const price = parseInt(priceText);
+            const qty = parseInt(qtyInput.value);
+            const imgSrc = modalImg.src;
+            
+            // Get selected size if it's a clothing item
+            let size = "";
+            const activeChip = document.querySelector('.option-chips .chip.active');
+            if (activeChip) size = activeChip.innerText;
+
+            for(let i = 0; i < qty; i++) {
+                cart.push({ name: name + (size ? ` (${size})` : ""), price: price, image: imgSrc });
+            }
+            
+            updateCartUI();
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            toggleCart(); // Open sidebar to show it was added
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const countSpan = document.getElementById('cart-count');
+            const totalSpan = document.getElementById('cart-total-price');
+            
+            countSpan.innerText = cart.length;
+            container.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: #888;">Your cart is empty.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="${item.name}" style="width:40px; height:40px; object-fit:cover; border-radius:4px; margin-right:10px; background:#111;">
+                            <div style="flex:1;">
+                                <div style="font-weight:bold; font-size:0.85rem; line-height:1.2; margin-bottom:5px;">${item.name}</div>
+                                <div style="color:#ffd700; font-size:0.9rem;">${item.price.toLocaleString('vi-VN')} VND</div>
+                            </div>
+                            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; padding:5px; font-weight:bold;">X</button>
+                        </div>
+                    `;
+                });
+            }
+            totalSpan.innerText = total.toLocaleString('vi-VN');
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function openCheckout() {
+            if (cart.length === 0) {
+                alert("Giỏ hàng của bạn đang trống!");
+                return;
+            }
+            
+            // Populate Checkout Summary
+            const summaryContainer = document.getElementById('checkout-summary-container');
+            let total = 0;
+            summaryContainer.innerHTML = '';
+            
+            cart.forEach(item => {
+                total += item.price;
+                summaryContainer.innerHTML += `
+                    <div class="order-summary-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="order-summary-info">
+                            <span>${item.name}</span>
+                            <span style="font-size:0.8rem; color:#888;">QTY: 1</span>
+                        </div>
+                        <div class="order-summary-price">${item.price.toLocaleString('vi-VN')} VND</div>
+                    </div>
+                `;
+            });
+            
+            // Update Totals
+            const formattedTotal = total.toLocaleString('vi-VN') + ' VND';
+            document.getElementById('checkout-subtotal').innerText = formattedTotal;
+            document.getElementById('checkout-grand-total').innerText = formattedTotal;
+            
+            // Close cart sidebar and open checkout overlay
+            document.getElementById('cart-sidebar').classList.remove('open');
+            document.getElementById('checkoutOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function confirmOrder() {
+            alert("THÀNH CÔNG! Đơn hàng của bạn đã được ghi nhận. Cảm ơn bạn đã đồng hành cùng FANCY UNITED ESPORTS.");
+            cart = [];
+            updateCartUI();
+            closeCheckout();
+        }
+        // --- END CART LOGIC ---
+
+        // Handle chip selection
+        document.querySelectorAll('.option-chips .chip:not(.disabled)').forEach(chip => {
+            chip.onclick = function() {
+                const group = this.parentElement;
+                group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+
+        // Simple accordion logic
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.onclick = function() {
+                // Toggle logic can be added here
+                alert("This section would expand to show " + this.innerText.split(' ')[0] + " details.");
+            }
+        });
+
+        // Check for product parameter in URL and open modal
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productTitle = urlParams.get('product');
+            if (productTitle) {
+                // Find the product card that matches the title
+                const productCards = document.querySelectorAll('.product-card');
+                for (let card of productCards) {
+                    const titleElement = card.querySelector('.product-title');
+                    if (titleElement && titleElement.innerText.trim().toUpperCase() === productTitle.toUpperCase()) {
+                        card.click();
+                        break;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

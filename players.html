@@ -43,9 +43,20 @@
         .brand-title {
             font-size: 2.2rem;
             font-family: 'CyberdyneCondensed', sans-serif;
-            color: #ffd700;
             letter-spacing: 2px;
+            background: linear-gradient(
+                to right, 
+                #bf953f 0%, 
+                #fcf6ba 25%, 
+                #b38728 50%, 
+                #fcf6ba 75%, 
+                #bf953f 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            animation: shine-sweep 3s linear infinite;
         }
         .nav-links { display: flex; align-items: center; margin-left: auto; }
         .nav-links a { 
@@ -75,15 +86,89 @@
 
         /* Players Section */
         .players-hero {
-            padding-top: 150px;
+            padding-top: 100px;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('assets/jersey.png');
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('assets/banner/valorant.webp');
             background-size: cover;
-            background-position: center;
-            min-height: 400px;
+            background-position: center 25%;
+            width: 100%;
+            aspect-ratio: 32 / 9;
+            min-height: 250px;
+            max-height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            border-bottom: 2px solid #ffd700;
+            position: relative;
+        }
+
+        .players-hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .players-hero h1 .accent-gold {
+            font-family: 'CyberdyneCondensed', sans-serif;
+            font-size: 5rem;
+            letter-spacing: 6px;
+            color: #ffd700;
+            background: linear-gradient(
+                to right, 
+                #bf953f 0%, 
+                #fcf6ba 25%, 
+                #b38728 50%, 
+                #fcf6ba 75%, 
+                #bf953f 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            animation: shine-sweep 3s linear infinite;
+        }
+
+        @keyframes shine-sweep {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Thêm vạch kẻ trang trí hai bên để tăng vẻ elite */
+        .players-hero h1::before,
+        .players-hero h1::after {
+            content: '';
+            height: 2px;
+            width: 50px;
+            background: linear-gradient(to right, transparent, #ffd700);
+        }
+        .players-hero h1::after {
+            background: linear-gradient(to left, transparent, #ffd700);
+        }
+
+        .players-hero p {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+
+        .players-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, rgba(17,17,17,1));
+            pointer-events: none;
         }
         
         .section-padding { padding: 6rem 5%; }
@@ -214,13 +299,13 @@
 </head>
 <body>
     <nav>
-        <div class="logo"><img src="assets/logo.png" alt="Fancy United Logo"></div>
-        <div class="brand-title">FANCY UNITED ESPORTS</div>
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;"><img src="assets/logo.png" alt="Fancy United Logo"></div>
+        <div class="brand-title" onclick="window.location.href='index.html'" style="cursor: pointer;">FANCY UNITED ESPORTS</div>
         <div class="nav-links">
             <a href="index.html#home">HOME</a>
             <a href="index.html#about">ABOUT</a>
             <a href="players.html" class="active">PLAYERS</a>
-            <a href="index.html#shop">SHOP</a>
+            <a href="shop.html">SHOP</a>
         </div>
     </nav>
 
@@ -311,7 +396,7 @@
     </section>
 
     <footer>
-        <img src="assets/logo.png" alt="Fancy United Logo">
+        <img src="assets/logo.png" alt="Fancy United Logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
         <div class="copyright">
             &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
             <i>Note: This is a concept website.</i>

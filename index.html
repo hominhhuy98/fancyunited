@@ -23,7 +23,24 @@
         .accent-red { color: #e50914; }
         .accent-gold { color: #ffd700; }
         .fancy-font { font-family: 'CyberdyneCondensed', sans-serif; font-weight: normal; }
-        .hero-content h1 .fancy-font { font-size: 6rem; display: block; margin-top: -1.5rem; }
+        .hero-content h1 .fancy-font { 
+            font-size: 6rem; 
+            display: block; 
+            margin-top: -1.5rem;
+            background: linear-gradient(
+                to right, 
+                #bf953f 0%, 
+                #fcf6ba 25%, 
+                #b38728 50%, 
+                #fcf6ba 75%, 
+                #bf953f 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine-sweep 3s linear infinite;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        }
 
         /* Navigation */
         nav { 
@@ -46,9 +63,26 @@
         .brand-title {
             font-size: 2.2rem;
             font-family: 'CyberdyneCondensed', sans-serif;
-            color: #ffd700;
             letter-spacing: 2px;
+            background: linear-gradient(
+                to right, 
+                #bf953f 0%, 
+                #fcf6ba 25%, 
+                #b38728 50%, 
+                #fcf6ba 75%, 
+                #bf953f 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            animation: shine-sweep 3s linear infinite;
+        }
+
+        @keyframes shine-sweep {
+            to {
+                background-position: 200% center;
+            }
         }
         .nav-links { display: flex; align-items: center; margin-left: auto; }
         .nav-links a { 
@@ -120,6 +154,7 @@
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         .product-card::before {
             content: '';
@@ -190,8 +225,207 @@
         .cart-header { font-size: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1rem; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: #222; padding: 1rem; border-radius: 4px; }
         .cart-total { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem; text-align: right; color: #ffd700; }
-        .checkout-btn { width: 100%; padding: 1rem; background: #e50914; color: white; border: none; font-size: 1.2rem; font-weight: bold; margin-top: 1rem; cursor: pointer; }
+        .checkout-btn { width: 100%; padding: 1rem; background: #e50914; color: white; border: none; font-size: 1.2rem; font-weight: bold; margin-top: 1rem; cursor: pointer; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
         .checkout-btn:hover { background: #ffd700; color: #000; }
+
+        /* Checkout Modal */
+        .checkout-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 3000;
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        .checkout-modal-overlay.active { display: flex; }
+        
+        .checkout-modal {
+            background: #111;
+            border: 1px solid #333;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .checkout-left {
+            padding: 2.5rem;
+            background: #161616;
+        }
+        
+        .checkout-right {
+            padding: 2.5rem;
+            background: #0a0a0a;
+            border-left: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkout-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .checkout-form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .checkout-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkout-form-group input, .checkout-form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            font-family: 'Barlow', sans-serif;
+            transition: 0.3s;
+        }
+
+        .checkout-form-group input:focus, .checkout-form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .order-summary-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #ccc;
+            background: #111;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #222;
+        }
+
+        .order-summary-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            background: #222;
+        }
+
+        .order-summary-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .order-summary-price {
+            color: #ffd700;
+            font-weight: bold;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .discount-section {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .discount-section input {
+            flex: 1;
+            padding: 0.8rem;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .discount-section button {
+            padding: 0 20px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .discount-section button:hover { background: #555; }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .order-summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+        }
+
+        .confirm-order-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(90deg, #b8860b, #ffd700);
+            color: #000;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-top: auto;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .confirm-order-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .close-checkout {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-modal { grid-template-columns: 1fr; }
+            .checkout-right { border-left: none; border-top: 1px solid #333; }
+        }
 
         /* Footer */
         footer { background: #000; padding: 4rem 5%; text-align: center; border-top: 1px solid #333; }
@@ -211,13 +445,13 @@
 <body>
 
     <nav>
-        <div class="logo"><img src="assets/logo.png" alt="Fancy United Logo"></div>
-        <div class="brand-title">FANCY UNITED ESPORTS</div>
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;"><img src="assets/logo.png" alt="Fancy United Logo"></div>
+        <div class="brand-title" onclick="window.location.href='index.html'" style="cursor: pointer;">FANCY UNITED ESPORTS</div>
         <div class="nav-links">
             <a href="index.html#home">HOME</a>
             <a href="index.html#about">ABOUT</a>
             <a href="players.html">PLAYERS</a>
-            <a href="index.html#shop">SHOP</a>
+            <a href="shop.html">SHOP</a>
             <button class="cart-btn" onclick="toggleCart()">CART <span id="cart-count">0</span></button>
         </div>
     </nav>
@@ -229,7 +463,69 @@
             <p style="color: #888;">Your cart is empty.</p>
         </div>
         <div class="cart-total">Total: <span id="cart-total-price">0</span> VND</div>
-        <button class="checkout-btn" onclick="checkout()">PROCEED TO CHECKOUT</button>
+        <button class="checkout-btn" onclick="openCheckout()">PROCEED TO CHECKOUT</button>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutOverlay" class="checkout-modal-overlay">
+        <div class="checkout-modal">
+            <button class="close-checkout" onclick="closeCheckout()">×</button>
+            
+            <div class="checkout-left">
+                <h2 class="checkout-title">BILLING DETAILS</h2>
+                <div class="checkout-form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your full name" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone number" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Shipping Address</label>
+                    <input type="text" placeholder="Street address, City, Province" required>
+                </div>
+                <div class="checkout-form-group">
+                    <label>Payment Method</label>
+                    <select>
+                        <option value="cod">Cash on Delivery (COD)</option>
+                        <option value="bank">Bank Transfer</option>
+                        <option value="card">Credit / Debit Card</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkout-right">
+                <h2 class="checkout-title" style="border: none; color: #fff;">ORDER SUMMARY</h2>
+                <div id="checkout-summary-container" style="flex: 1; overflow-y: auto; max-height: 350px; padding-right: 10px;">
+                    <!-- Items will be populated here by JS -->
+                </div>
+
+                <div class="discount-section">
+                    <input type="text" placeholder="Discount Code">
+                    <button onclick="alert('Invalid or expired discount code.')">APPLY</button>
+                </div>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="checkout-subtotal">0 VND</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping Fee</span>
+                    <span>Free</span>
+                </div>
+
+                <div class="order-summary-total">
+                    <span>TOTAL</span>
+                    <span id="checkout-grand-total">0 VND</span>
+                </div>
+                <button class="confirm-order-btn" onclick="confirmOrder()">CONFIRM & PAY</button>
+            </div>
+        </div>
     </div>
 
     <header id="home" class="hero">
@@ -255,45 +551,58 @@
         <h2 class="section-title">THE <span class="accent-gold">ARMORY</span></h2>
         
         <div class="product-grid">
-            <div class="product-card">
-                <img src="assets/jersey.png" alt="Pro Jersey">
-                <h3 class="product-title">Official Pro Jersey (White/Red/Gold)</h3>
-                <div class="product-price">580.000 VND</div>
-                <button class="add-to-cart-btn" onclick="addToCart('Official Pro Jersey', 580000)">ADD TO CART</button>
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED PRO JERSEY 2026'">
+                <img src="assets/jersey/jersey front.png" alt="Pro Jersey">
+                <h3 class="product-title">FANCY UNITED PRO JERSEY 2026</h3>
+                <div class="product-price">590.000 VND</div>
             </div>
 
-            <div class="product-card">
-                <img src="assets/Arm sleeve 1.png" alt="Dark Tech Arm Sleeve">
-                <h3 class="product-title">Arm Sleeve: Dark Tech Edition</h3>
-                <div class="product-price">230.000 VND</div>
-                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Dark Tech', 230000)">ADD TO CART</button>
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED OFFICIAL T-SHIRT'">
+                <img src="assets/t-shirt/tshirt-front.png" alt="Official T-Shirt">
+                <h3 class="product-title">FANCY UNITED OFFICIAL T-SHIRT</h3>
+                <div class="product-price">790.000 VND</div>
             </div>
 
-            <div class="product-card">
-                <img src="assets/Arm sleeve 2.png" alt="Fearless Dark Arm Sleeve">
-                <h3 class="product-title">Arm Sleeve: Fearless Dark Edition</h3>
-                <div class="product-price">230.000 VND</div>
-                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Fearless Dark', 230000)">ADD TO CART</button>
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED GRAPHIC TEE'">
+                <img src="assets/Tee/tee-front.png" alt="Graphic Tee">
+                <h3 class="product-title">FANCY UNITED GRAPHIC TEE</h3>
+                <div class="product-price">530.000 VND</div>
             </div>
 
-            <div class="product-card">
-                <img src="assets/Arm sleeve 3.png" alt="Fearless Light Arm Sleeve">
-                <h3 class="product-title">Arm Sleeve: Fearless Light Edition</h3>
-                <div class="product-price">230.000 VND</div>
-                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Fearless Light', 230000)">ADD TO CART</button>
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED ARM SLEEVE - RED EDITION'">
+                <img src="assets/arm sleeve/Arm sleeve 1.png" alt="Arm Sleeve Red">
+                <h3 class="product-title">FANCY UNITED ARM SLEEVE - RED EDITION</h3>
+                <div class="product-price">200.000 VND</div>
             </div>
 
-            <div class="product-card">
-                <img src="assets/Arm sleeve 4.png" alt="Light Tech Arm Sleeve">
-                <h3 class="product-title">Arm Sleeve: Light Tech Edition</h3>
-                <div class="product-price">230.000 VND</div>
-                <button class="add-to-cart-btn" onclick="addToCart('Arm Sleeve: Light Tech', 230000)">ADD TO CART</button>
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED ARM SLEEVE - GOLD EDITION'">
+                <img src="assets/arm sleeve/Arm sleeve 2.png" alt="Arm Sleeve Gold">
+                <h3 class="product-title">FANCY UNITED ARM SLEEVE - GOLD EDITION</h3>
+                <div class="product-price">200.000 VND</div>
+            </div>
+
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED ARM SLEEVE - BLACK EDITION'">
+                <img src="assets/arm sleeve/Arm sleeve 3.png" alt="Arm Sleeve Black">
+                <h3 class="product-title">FANCY UNITED ARM SLEEVE - BLACK EDITION</h3>
+                <div class="product-price">200.000 VND</div>
+            </div>
+
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED ARM SLEEVE - WHITE EDITION'">
+                <img src="assets/arm sleeve/Arm sleeve 4.png" alt="Arm Sleeve White">
+                <h3 class="product-title">FANCY UNITED ARM SLEEVE - WHITE EDITION</h3>
+                <div class="product-price">200.000 VND</div>
+            </div>
+
+            <div class="product-card" onclick="window.location.href='shop.html?product=FANCY UNITED LOGO STICKER PACK'">
+                <img src="assets/logo.png" alt="Logo Sticker Pack">
+                <h3 class="product-title">FANCY UNITED LOGO STICKER PACK</h3>
+                <div class="product-price">50.000 VND</div>
             </div>
         </div>
     </section>
 
     <footer>
-        <img src="assets/logo.png" alt="Fancy United Logo">
+        <img src="assets/logo.png" alt="Fancy United Logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
         <div class="copyright">
             &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
             <i>Note: This is a concept website.</i>
@@ -304,12 +613,15 @@
         let cart = [];
 
         // Add item to cart
-        function addToCart(productName, price) {
-            cart.push({ name: productName, price: price });
+        function addToCart(productName, price, imageSrc) {
+            cart.push({ name: productName, price: price, image: imageSrc || 'assets/logo.png' });
             updateCartUI();
             
-            // Optional: Provide visual feedback
-            alert(productName + " đã được thêm vào giỏ hàng!");
+            // Open cart sidebar to show it was added (like shop)
+            const sidebar = document.getElementById('cart-sidebar');
+            if (!sidebar.classList.contains('open')) {
+                sidebar.classList.add('open');
+            }
         }
 
         // Remove item from cart
@@ -339,11 +651,12 @@
                     total += item.price;
                     container.innerHTML += `
                         <div class="cart-item">
-                            <div>
-                                <div style="font-weight:bold; font-size:0.9rem;">${item.name}</div>
-                                <div style="color:#ffd700;">${item.price.toLocaleString('vi-VN')} VND</div>
+                            <img src="${item.image}" alt="${item.name}" style="width:40px; height:40px; object-fit:cover; border-radius:4px; margin-right:10px; background:#111;">
+                            <div style="flex:1;">
+                                <div style="font-weight:bold; font-size:0.85rem; line-height:1.2; margin-bottom:5px;">${item.name}</div>
+                                <div style="color:#ffd700; font-size:0.9rem;">${item.price.toLocaleString('vi-VN')} VND</div>
                             </div>
-                            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">X</button>
+                            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; padding:5px; font-weight:bold;">X</button>
                         </div>
                     `;
                 });
@@ -359,17 +672,58 @@
             sidebar.classList.toggle('open');
         }
 
-        // Checkout Placeholder
-        function checkout() {
+        // --- CHECKOUT LOGIC ---
+        function openCheckout() {
             if (cart.length === 0) {
-                alert("Giỏ hàng của bạn đang trống!");
-            } else {
-                alert("Cảm ơn bạn! (Đây là bản demo nên chức năng thanh toán chưa được kết nối)");
-                cart = []; // Empty cart
-                updateCartUI();
-                toggleCart(); // Close sidebar
+                alert("Giỏ hàng của bạn đang trống! Vui lòng chọn sản phẩm trước.");
+                return;
             }
+            
+            // Populate Checkout Summary
+            const summaryContainer = document.getElementById('checkout-summary-container');
+            let total = 0;
+            summaryContainer.innerHTML = '';
+            
+            cart.forEach(item => {
+                total += item.price;
+                summaryContainer.innerHTML += `
+                    <div class="order-summary-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="order-summary-info">
+                            <span>${item.name}</span>
+                            <span style="font-size:0.8rem; color:#888;">QTY: 1</span>
+                        </div>
+                        <div class="order-summary-price">${item.price.toLocaleString('vi-VN')} VND</div>
+                    </div>
+                `;
+            });
+            
+            // Update Totals
+            const formattedTotal = total.toLocaleString('vi-VN') + ' VND';
+            document.getElementById('checkout-subtotal').innerText = formattedTotal;
+            document.getElementById('checkout-grand-total').innerText = formattedTotal;
+            
+            // Close cart sidebar and open checkout overlay
+            document.getElementById('cart-sidebar').classList.remove('open');
+            document.getElementById('checkoutOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden'; // prevent background scrolling
         }
+
+        function closeCheckout() {
+            document.getElementById('checkoutOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function confirmOrder() {
+            // Here you would normally validate the form inputs
+            alert("THÀNH CÔNG! Đơn hàng của bạn đã được ghi nhận. Cảm ơn bạn đã đồng hành cùng FANCY UNITED ESPORTS.");
+            
+            // Clear everything after successful order
+            cart = [];
+            updateCartUI();
+            closeCheckout();
+        }
+        // --- END CHECKOUT LOGIC ---
     </script>
 </body>
 </html>
