@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <!-- Google Fonts: Orbitron & Barlow -->
-    <link href="https://fonts.googleapis.com/css?family=Orbitron:700,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Chakra Petch & Barlow -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLAYERS | FANCY UNITED ESPORTS</title>
@@ -18,7 +19,7 @@
         /* CSS Reset & Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #111; color: #fff; line-height: 1.6; overflow-x: hidden; font-family: 'Barlow', Arial, sans-serif; }
-        h1, h2, h3 { text-transform: uppercase; letter-spacing: 2px; font-family: 'Orbitron', Arial, sans-serif; font-weight: 700; }
+        h1, h2, h3 { text-transform: uppercase; letter-spacing: 2px; font-family: 'Chakra Petch', Arial, sans-serif; font-weight: 700; }
         .accent-red { color: #e50914; }
         .accent-gold { color: #ffd700; }
         
@@ -43,6 +44,7 @@
         .brand-title {
             font-size: 2.2rem;
             font-family: 'CyberdyneCondensed', sans-serif;
+            font-weight: normal;
             letter-spacing: 2px;
             background: linear-gradient(
                 to right, 
@@ -84,6 +86,13 @@
         .nav-links a.active { color: #ffd700; }
         .nav-links a.active::after { width: 100%; }
 
+        /* Language Switcher */
+        .lang-switch { margin-left: 2rem; display: flex; align-items: center; gap: 10px; font-weight: bold; font-family: 'Chakra Petch', sans-serif; font-size: 0.9rem; }
+        .lang-switch span { cursor: pointer; transition: 0.3s; opacity: 0.5; color: #fff; }
+        .lang-switch span.active { opacity: 1; color: #ffd700; }
+        .lang-switch span:hover { opacity: 1; }
+        .lang-divider { color: #555; }
+
         /* Players Section */
         .players-hero {
             padding-top: 100px;
@@ -114,7 +123,8 @@
         }
 
         .players-hero h1 .accent-gold {
-            font-family: 'CyberdyneCondensed', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
             font-size: 5rem;
             letter-spacing: 6px;
             color: #ffd700;
@@ -253,7 +263,7 @@
             color: #fff;
             margin-top: 0.2rem;
             font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
@@ -283,14 +293,55 @@
         }
 
         /* Footer */
-        footer { background: #000; padding: 4rem 5%; text-align: center; border-top: 1px solid #333; }
-        footer img { 
+        footer { background: #1a1a1a; padding: 4rem 5%; text-align: center; border-top: 1px solid #333; }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer-social-header {
+            color: #ffd700;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .footer-social-icons {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .footer-social-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            transition: 0.3s transform;
+        }
+        .footer-social-icons a img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+        }
+        .footer-social-icons a:hover {
+            transform: translateY(-5px);
+        }
+        .footer-social-icons a:hover img {
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        .footer-logo-img { 
             height: 120px; 
             margin-bottom: 2rem; 
             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        footer img:hover {
+        .footer-logo-img:hover {
             filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
             transform: scale(1.15) rotate(2deg);
         }
@@ -306,6 +357,11 @@
             <a href="index.html#about">ABOUT</a>
             <a href="players.html" class="active">PLAYERS</a>
             <a href="shop.html">SHOP</a>
+            <div class="lang-switch">
+                <span id="lang-en" onclick="setLang('en')" class="active">ENG</span>
+                <span class="lang-divider">|</span>
+                <span id="lang-vi" onclick="setLang('vi')">VN</span>
+            </div>
         </div>
     </nav>
 
@@ -396,13 +452,24 @@
     </section>
 
     <footer>
-        <img src="assets/logo.png" alt="Fancy United Logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
-        <div class="copyright">
-            &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
-            <i>Note: This is a concept website.</i>
+        <div class="footer-content">
+            <div class="footer-social-header">#FANCYUTD</div>
+            <div class="footer-social-icons">
+                <a href="https://x.com/FANCYUTD" target="_blank" title="X"><img src="assets/icon-x.svg" alt="X"></a>
+                <a href="https://www.youtube.com/@fancyutd" target="_blank" title="YouTube"><img src="assets/icon-youtube.svg" alt="YouTube"></a>
+                <a href="https://www.tiktok.com/@fancyutd" target="_blank" title="TikTok"><img src="assets/icon-tiktok.svg" alt="TikTok"></a>
+                <a href="https://www.instagram.com/fancyutd" target="_blank" title="Instagram"><img src="assets/icon-instagram.svg" alt="Instagram"></a>
+                <a href="https://www.facebook.com/FANCYUNITED" target="_blank" title="Facebook"><img src="assets/icon-facebook.svg" alt="Facebook"></a>
+            </div>
+            <img src="assets/logo.png" alt="Fancy United Logo" class="footer-logo-img" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <div class="copyright">
+                &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
+                <i>Note: This is a concept website.</i>
+            </div>
         </div>
     </footer>
 
+    <script src="language.js"></script>
     <script>
         document.querySelectorAll('.player-card').forEach(card => {
             const img = card.querySelector('img');

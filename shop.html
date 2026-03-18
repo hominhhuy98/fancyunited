@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <!-- Google Fonts: Orbitron & Barlow -->
-    <link href="https://fonts.googleapis.com/css?family=Orbitron:700,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Chakra Petch & Barlow -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP for smooth scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHOP | FANCY UNITED ESPORTS</title>
@@ -18,7 +26,7 @@
         /* CSS Reset & Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #111; color: #fff; line-height: 1.6; overflow-x: hidden; font-family: 'Barlow', Arial, sans-serif; }
-        h1, h2, h3 { text-transform: uppercase; letter-spacing: 2px; font-family: 'Orbitron', Arial, sans-serif; font-weight: 700; }
+        h1, h2, h3 { text-transform: uppercase; letter-spacing: 2px; font-family: 'Chakra Petch', Arial, sans-serif; font-weight: 700; }
         .accent-red { color: #e50914; }
         .accent-gold { color: #ffd700; }
         
@@ -43,6 +51,7 @@
         .brand-title {
             font-size: 2.2rem;
             font-family: 'CyberdyneCondensed', sans-serif;
+            font-weight: normal;
             letter-spacing: 2px;
             background: linear-gradient(
                 to right, 
@@ -89,6 +98,13 @@
         .nav-links a:hover { color: #ffd700; }
         .nav-links a:hover::after { width: 100%; }
 
+        /* Language Switcher */
+        .lang-switch { margin-left: 2rem; display: flex; align-items: center; gap: 10px; font-weight: bold; font-family: 'Chakra Petch', sans-serif; font-size: 0.9rem; }
+        .lang-switch span { cursor: pointer; transition: 0.3s; opacity: 0.5; color: #fff; }
+        .lang-switch span.active { opacity: 1; color: #ffd700; }
+        .lang-switch span:hover { opacity: 1; }
+        .lang-divider { color: #555; }
+
         /* Cart Button */
         .cart-btn { 
             background: #e50914; 
@@ -100,7 +116,7 @@
             cursor: pointer; 
             margin-left: 2rem; 
             transition: 0.3s; 
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 0.8rem;
             box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
         }
@@ -119,11 +135,38 @@
         }
 
         .shop-header h1 {
-            font-size: 4rem;
-            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
             color: #fff;
-            font-weight: 900;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .shop-header h1 .accent-gold {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            font-size: 5rem;
+            letter-spacing: 6px;
+            color: #ffd700;
+            background: linear-gradient(
+                to right, 
+                #bf953f 0%, 
+                #fcf6ba 25%, 
+                #b38728 50%, 
+                #fcf6ba 75%, 
+                #bf953f 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            animation: shine-sweep 3s linear infinite;
         }
 
         .shop-header p {
@@ -154,7 +197,7 @@
             color: #fff;
             padding: 10px 30px;
             cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 0.9rem;
             transition: 0.3s;
             display: flex;
@@ -261,7 +304,7 @@
             font-size: 1rem;
             margin-bottom: 0.7rem;
             min-height: 50px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             font-weight: 700;
             line-height: 1.4;
             color: #fff;
@@ -418,7 +461,7 @@
         .modal-title {
             font-size: 2rem;
             margin-bottom: 10px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             color: #000;
         }
 
@@ -426,7 +469,7 @@
             font-size: 1.5rem;
             font-weight: 900;
             margin-bottom: 30px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
         }
 
         .option-label {
@@ -487,6 +530,35 @@
             height: 18px;
         }
 
+        #custom-name-container {
+            margin-bottom: 25px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #custom-name-input {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            font-family: 'Barlow', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        #custom-name-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .modal-actions {
             display: flex;
             gap: 10px;
@@ -521,7 +593,7 @@
             color: #fff;
             border: none;
             padding: 15px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -580,10 +652,10 @@
         #cart-sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #111; border-left: 2px solid #333; z-index: 2000; padding: 2rem; transition: right 0.3s ease; overflow-y: auto; color: white; }
         #cart-sidebar.open { right: 0; }
         .close-cart { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; float: right; }
-        .cart-header { font-size: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1rem; font-family: 'Orbitron', sans-serif; }
+        .cart-header { font-size: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1rem; font-family: 'Chakra Petch', sans-serif; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: #222; padding: 1rem; border-radius: 4px; }
-        .cart-total { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem; text-align: right; color: #ffd700; font-family: 'Orbitron', sans-serif; }
-        .checkout-btn { width: 100%; padding: 1rem; background: #e50914; color: white; border: none; font-size: 1.2rem; font-weight: bold; margin-top: 1rem; cursor: pointer; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
+        .cart-total { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem; text-align: right; color: #ffd700; font-family: 'Chakra Petch', sans-serif; }
+        .checkout-btn { width: 100%; padding: 1rem; background: #e50914; color: white; border: none; font-size: 1.2rem; font-weight: bold; margin-top: 1rem; cursor: pointer; font-family: 'Chakra Petch', sans-serif; transition: 0.3s; }
         .checkout-btn:hover { background: #ffd700; color: #000; }
 
         /* Checkout Modal */
@@ -626,7 +698,7 @@
         }
 
         .checkout-title {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 1.8rem;
             color: #ffd700;
             margin-bottom: 1.5rem;
@@ -743,7 +815,7 @@
             border-top: 1px solid #333;
             font-size: 1.5rem;
             color: #ffd700;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             font-weight: bold;
         }
 
@@ -753,7 +825,7 @@
             background: linear-gradient(90deg, #b8860b, #ffd700);
             color: #000;
             border: none;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
             font-size: 1.1rem;
             margin-top: auto;
@@ -786,18 +858,259 @@
         }
 
         /* Footer */
-        footer { background: #000; padding: 4rem 5%; text-align: center; border-top: 1px solid #333; }
-        footer img { 
+        footer { background: #1a1a1a; padding: 4rem 5%; text-align: center; border-top: 1px solid #333; }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer-social-header {
+            color: #ffd700;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .footer-social-icons {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .footer-social-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            transition: 0.3s transform;
+        }
+        .footer-social-icons a img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+        }
+        .footer-social-icons a:hover {
+            transform: translateY(-5px);
+        }
+        .footer-social-icons a:hover img {
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        .footer-logo-img { 
             height: 120px; 
             margin-bottom: 2rem; 
             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        footer img:hover {
+        .footer-logo-img:hover {
             filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
             transform: scale(1.15) rotate(2deg);
         }
         .copyright { color: #888; font-size: 0.9rem; margin-top: 1rem; line-height: 1.8; }
+
+        /* 3D Showcase Hero Styles */
+        .hero-3d-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            perspective: 1200px;
+            position: relative;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            overflow: hidden;
+            margin-bottom: 50px;
+            padding-top: 80px;
+            z-index: 1; /* Establishes stacking context so .glow stays inside */
+        }
+
+        .hero-text-overlay {
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            width: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        #shirt-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 3.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(to right, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        }
+
+        .hero-content-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 50px;
+            z-index: 5;
+        }
+
+        .hero-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-side-left {
+            justify-content: flex-end;
+            padding-right: 40px;
+        }
+
+        .hero-side-right {
+            justify-content: flex-start;
+            padding-left: 40px;
+        }
+
+        #rotate-btn {
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+        }
+
+        #rotate-btn:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+        }
+
+        .hero-add-cart-btn {
+            background: #e50914; 
+            padding: 15px 30px; 
+            border-radius: 4px; 
+            border: none; 
+            color: white; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-add-cart-btn:hover { 
+            background: #ffd700; 
+            color: #000; 
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); 
+            transform: translateY(-3px); 
+        }
+
+        .product-showcase {
+            position: relative;
+            width: 500px;
+            height: 600px;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            z-index: 5;
+            flex-shrink: 0;
+        }
+
+        .shirt-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .shirt-front, .shirt-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shirt-front img, .shirt-back img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+        }
+
+        .shirt-back {
+            transform: rotateY(180deg);
+        }
+
+        .thumbnails {
+            position: absolute;
+            bottom: 5%;
+            display: flex;
+            gap: 20px;
+            z-index: 20;
+        }
+
+        .thumb {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            transition: 0.3s;
+        }
+
+        .thumb:hover {
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-8px);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .thumb:hover img {
+            transform: scale(1.1);
+        }
+
+        .thumb.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            z-index: 0;
+            border-radius: 50%;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -809,6 +1122,11 @@
             <a href="index.html#about">ABOUT</a>
             <a href="players.html">PLAYERS</a>
             <a href="shop.html" style="color: #ffd700;">SHOP</a>
+            <div class="lang-switch">
+                <span id="lang-en" onclick="setLang('en')" class="active">ENG</span>
+                <span class="lang-divider">|</span>
+                <span id="lang-vi" onclick="setLang('vi')">VN</span>
+            </div>
             <button class="cart-btn" onclick="toggleCart()">CART <span id="cart-count">0</span></button>
         </div>
     </nav>
@@ -885,10 +1203,43 @@
         </div>
     </div>
 
-    <div class="shop-container">
+    <div class="hero-3d-container">
+        <div class="glow" id="bg-glow"></div>
+        
+        <div class="hero-text-overlay">
+            <h1 id="shirt-title">FANCY PRO JERSEY</h1>
+        </div>
+
+        <div class="hero-content-row">
+            <div class="hero-side hero-side-left">
+                <button class="hero-add-cart-btn" id="hero-add-cart-btn" onclick="openHeroProductModal()">ADD TO CART</button>
+            </div>
+
+            <div class="product-showcase" id="showcase">
+                <div class="shirt-layer" id="main-shirt">
+                    <div class="shirt-front"><img id="img-front" src="assets/jersey/jersey front.png" alt="Front"></div>
+                    <div class="shirt-back"><img id="img-back" src="assets/jersey/jersey back.png" alt="Back"></div>
+                </div>
+            </div>
+
+            <div class="hero-side hero-side-right">
+                <div id="rotate-btn" onclick="flipShirt()" title="Rotate Shirt">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="thumbnails">
+            <div class="thumb active" data-index="0"><img src="assets/jersey/jersey front.png" alt="Jersey"></div>
+            <div class="thumb" data-index="1"><img src="assets/t-shirt/tshirt-front.png" alt="T-Shirt"></div>
+            <div class="thumb" data-index="2"><img src="assets/Tee/tee-front.png" alt="Tee"></div>
+        </div>
+    </div>
+
+    <div class="shop-container" style="padding-top: 40px;">
         <div class="shop-header">
-            <h1>FANCY UNITED SHOP</h1>
-            <p>Khám phá các sản phẩm chính thức của Fancy United Esports. Từ áo đấu thi đấu cho đến các phụ kiện độc quyền, hãy sở hữu ngay để ủng hộ đội tuyển của bạn.</p>
+            <h1><span class="accent-gold">SHOP</span></h1>
+            <p>Discover the official merchandise of Fancy United Esports. From professional jerseys to exclusive accessories, gear up now to support your team.</p>
         </div>
 
         <div class="shop-controls">
@@ -901,7 +1252,7 @@
 
         <div class="product-grid">
             <!-- Product 1: Jersey -->
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED PRO JERSEY 2026', '590.000₫', ['assets/jersey/jersey front.png', 'assets/jersey/jersey back.png', 'assets/jersey/z7629489619774_b2bcbbf45fcd94d792e76f284c296b9d.jpg', 'assets/jersey/z7629489620035_6dcc3413e76aea3ca84113d5b62b81a9.jpg', 'assets/jersey/z7629489632752_bda28ef4ae28df0f9cbb7d88d0a75e18.jpg', 'assets/jersey/z7629489637295_bd91c9a893a519166865c2108129e38f.jpg'], ['NEW', 'CUSTOMIZABLE'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED PRO JERSEY 2026', '590,000 VND', ['assets/jersey/jersey front.png', 'assets/jersey/jersey back.png', 'assets/jersey/z7629489619774_b2bcbbf45fcd94d792e76f284c296b9d.jpg', 'assets/jersey/z7629489620035_6dcc3413e76aea3ca84113d5b62b81a9.jpg', 'assets/jersey/z7629489632752_bda28ef4ae28df0f9cbb7d88d0a75e18.jpg', 'assets/jersey/z7629489637295_bd91c9a893a519166865c2108129e38f.jpg'], ['NEW', 'CUSTOMIZABLE'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag new">NEW</span>
@@ -911,12 +1262,12 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED PRO JERSEY 2026</h3>
-                    <p class="product-price">590.000₫</p>
+                    <p class="product-price">590,000 VND</p>
                 </div>
             </div>
 
             <!-- Product 2: T-Shirt -->
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED OFFICIAL T-SHIRT', '790.000₫', ['assets/t-shirt/tshirt-front.png', 'assets/t-shirt/tshirt-back.png'], ['NEW', 'CLOTHING'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED OFFICIAL T-SHIRT', '790,000 VND', ['assets/t-shirt/tshirt-front.png', 'assets/t-shirt/tshirt-back.png'], ['NEW', 'CLOTHING'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag new">NEW</span>
@@ -926,12 +1277,12 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED OFFICIAL T-SHIRT</h3>
-                    <p class="product-price">790.000₫</p>
+                    <p class="product-price">790,000 VND</p>
                 </div>
             </div>
 
             <!-- Product 3: Tee -->
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED GRAPHIC TEE', '530.000₫', ['assets/Tee/tee-front.png', 'assets/Tee/tee-back.png', 'assets/Tee/4SC03736.jpg', 'assets/Tee/4SC03804.jpg', 'assets/Tee/4SC03822.jpg'], ['NEW', 'CLOTHING'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED GRAPHIC TEE', '530,000 VND', ['assets/Tee/tee-front.png', 'assets/Tee/tee-back.png', '4SC03736.jpg', '4SC03804.jpg', '4SC03822.jpg'], ['NEW', 'CLOTHING'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag new">NEW</span>
@@ -941,12 +1292,12 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED GRAPHIC TEE</h3>
-                    <p class="product-price">530.000₫</p>
+                    <p class="product-price">530,000 VND</p>
                 </div>
             </div>
 
             <!-- Arm Sleeves -->
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - RED EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 1.png'], ['ACCESSORY'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - RED EDITION', '200,000 VND', ['assets/arm sleeve/Arm sleeve 1.png'], ['ACCESSORY'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag">ACCESSORY</span>
@@ -955,12 +1306,12 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED ARM SLEEVE - RED EDITION</h3>
-                    <p class="product-price">200.000₫</p>
+                    <p class="product-price">200,000 VND</p>
                 </div>
             </div>
 
             <!-- Product 3 -->
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - GOLD EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 2.png'], ['ACCESSORY'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - GOLD EDITION', '200,000 VND', ['assets/arm sleeve/Arm sleeve 2.png'], ['ACCESSORY'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag">ACCESSORY</span>
@@ -969,12 +1320,12 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED ARM SLEEVE - GOLD EDITION</h3>
-                    <p class="product-price">200.000₫</p>
+                    <p class="product-price">200,000 VND</p>
                 </div>
             </div>
 
             <!-- Product 4 -->
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - BLACK EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 3.png'], ['ACCESSORY'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - BLACK EDITION', '200,000 VND', ['assets/arm sleeve/Arm sleeve 3.png'], ['ACCESSORY'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag">ACCESSORY</span>
@@ -983,12 +1334,12 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED ARM SLEEVE - BLACK EDITION</h3>
-                    <p class="product-price">200.000₫</p>
+                    <p class="product-price">200,000 VND</p>
                 </div>
             </div>
 
             <!-- Product 5 -->
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - WHITE EDITION', '200.000₫', ['assets/arm sleeve/Arm sleeve 4.png'], ['ACCESSORY'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED ARM SLEEVE - WHITE EDITION', '200,000 VND', ['assets/arm sleeve/Arm sleeve 4.png'], ['ACCESSORY'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag">ACCESSORY</span>
@@ -997,11 +1348,11 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED ARM SLEEVE - WHITE EDITION</h3>
-                    <p class="product-price">200.000₫</p>
+                    <p class="product-price">200,000 VND</p>
                 </div>
             </div>
 
-            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED LOGO STICKER PACK', '50.000₫', 'assets/logo.png', ['MISC'])">
+            <div class="product-card" style="cursor: pointer;" onclick="openModal('FANCY UNITED LOGO STICKER PACK', '50,000 VND', 'assets/logo.png', ['MISC'])">
                 <div class="product-image">
                     <div class="product-tags">
                         <span class="tag">MISC</span>
@@ -1010,7 +1361,7 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">FANCY UNITED LOGO STICKER PACK</h3>
-                    <p class="product-price">50.000₫</p>
+                    <p class="product-price">50,000 VND</p>
                 </div>
             </div>
         </div>
@@ -1034,7 +1385,7 @@
                     <span class="tag">CUSTOMIZABLE</span>
                 </div>
                 <h2 id="modalTitle" class="modal-title">FANCY UNITED PRO JERSEY 2026</h2>
-                <div id="modalPrice" class="modal-price">590.000₫</div>
+                <div id="modalPrice" class="modal-price">590,000 VND</div>
 
                 <div class="option-group">
                     <div class="option-label">Teams</div>
@@ -1057,9 +1408,13 @@
                 </div>
 
                 <label class="customize-checkbox">
-                    <input type="checkbox">
-                    <span>Customize the jersey <small style="color:#888;">(+150.000₫)</small></span>
+                    <input type="checkbox" id="customize-toggle" onchange="toggleCustomName()">
+                    <span>Customize the jersey <small style="color:#888;">(+150,000 VND)</small></span>
                 </label>
+
+                <div id="custom-name-container" style="display: none;">
+                    <input type="text" id="custom-name-input" placeholder="ENTER NAME (MAX 8 CHARS)" maxlength="8">
+                </div>
 
                 <div class="modal-actions">
                     <div class="qty-selector">
@@ -1091,13 +1446,24 @@
     </div>
 
     <footer>
-        <img src="assets/logo.png" alt="Fancy United Logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
-        <div class="copyright">
-            &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
-            <i>Note: This is a concept website.</i>
+        <div class="footer-content">
+            <div class="footer-social-header">#FANCYUTD</div>
+            <div class="footer-social-icons">
+                <a href="https://x.com/FANCYUTD" target="_blank" title="X"><img src="assets/icon-x.svg" alt="X"></a>
+                <a href="https://www.youtube.com/@fancyutd" target="_blank" title="YouTube"><img src="assets/icon-youtube.svg" alt="YouTube"></a>
+                <a href="https://www.tiktok.com/@fancyutd" target="_blank" title="TikTok"><img src="assets/icon-tiktok.svg" alt="TikTok"></a>
+                <a href="https://www.instagram.com/fancyutd" target="_blank" title="Instagram"><img src="assets/icon-instagram.svg" alt="Instagram"></a>
+                <a href="https://www.facebook.com/FANCYUNITED" target="_blank" title="Facebook"><img src="assets/icon-facebook.svg" alt="Facebook"></a>
+            </div>
+            <img src="assets/logo.png" alt="Fancy United Logo" class="footer-logo-img" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <div class="copyright">
+                &copy; 2026 FANCY UNITED ESPORTS. All Rights Reserved. <br>
+                <i>Note: This is a concept website.</i>
+            </div>
         </div>
     </footer>
 
+    <script src="language.js"></script>
     <script>
         const modal = document.getElementById('productModal');
         const modalImg = document.getElementById('modalImg');
@@ -1156,6 +1522,23 @@
             });
 
             qtyInput.value = 1;
+
+                // Reset and show/hide customization based on tags
+                const customizeSection = document.querySelector('.customize-checkbox');
+                const customizeToggle = document.getElementById('customize-toggle');
+                const customNameContainer = document.getElementById('custom-name-container');
+                const customNameInput = document.getElementById('custom-name-input');
+                
+                if (tags.includes('CUSTOMIZABLE')) {
+                    customizeSection.style.display = 'flex';
+                } else {
+                    customizeSection.style.display = 'none';
+                }
+                
+                if (customizeToggle) customizeToggle.checked = false;
+                if (customNameContainer) customNameContainer.style.display = 'none';
+                if (customNameInput) customNameInput.value = '';
+
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden'; // Prevent scroll
         }
@@ -1206,21 +1589,40 @@
             qtyInput.value = current;
         }
 
+        function toggleCustomName() {
+            const toggle = document.getElementById('customize-toggle');
+            const container = document.getElementById('custom-name-container');
+            container.style.display = toggle.checked ? 'block' : 'none';
+            if(toggle.checked) {
+                document.getElementById('custom-name-input').focus();
+            }
+        }
+
         // --- CART LOGIC ---
         function addToCartFromModal() {
-            const name = modalTitle.innerText;
+            const baseName = modalTitle.innerText;
             const priceText = modalPrice.innerText.replace(/[^0-9]/g, '');
-            const price = parseInt(priceText);
+            let finalPrice = parseInt(priceText);
             const qty = parseInt(qtyInput.value);
             const imgSrc = modalImg.src;
             
+            // Check customization
+            const isCustomized = document.getElementById('customize-toggle').checked;
+            const customName = document.getElementById('custom-name-input').value.trim().toUpperCase();
+            
+            let displayName = baseName;
+            if (isCustomized) {
+                finalPrice += 150000;
+                displayName += ` [CUSTOM: ${customName || '?'}]`;
+            }
+
             // Get selected size if it's a clothing item
             let size = "";
             const activeChip = document.querySelector('.option-chips .chip.active');
             if (activeChip) size = activeChip.innerText;
 
             for(let i = 0; i < qty; i++) {
-                cart.push({ name: name + (size ? ` (${size})` : ""), price: price, image: imgSrc });
+                cart.push({ name: displayName + (size ? ` (${size})` : ""), price: finalPrice, image: imgSrc });
             }
             
             updateCartUI();
@@ -1253,14 +1655,14 @@
                             <img src="${item.image}" alt="${item.name}" style="width:40px; height:40px; object-fit:cover; border-radius:4px; margin-right:10px; background:#111;">
                             <div style="flex:1;">
                                 <div style="font-weight:bold; font-size:0.85rem; line-height:1.2; margin-bottom:5px;">${item.name}</div>
-                                <div style="color:#ffd700; font-size:0.9rem;">${item.price.toLocaleString('vi-VN')} VND</div>
+                                <div style="color:#ffd700; font-size:0.9rem;">${item.price.toLocaleString('en-US')} VND</div>
                             </div>
                             <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; padding:5px; font-weight:bold;">X</button>
                         </div>
                     `;
                 });
             }
-            totalSpan.innerText = total.toLocaleString('vi-VN');
+            totalSpan.innerText = total.toLocaleString('en-US');
         }
 
         function toggleCart() {
@@ -1270,7 +1672,7 @@
 
         function openCheckout() {
             if (cart.length === 0) {
-                alert("Giỏ hàng của bạn đang trống!");
+                alert("Your cart is empty!");
                 return;
             }
             
@@ -1288,13 +1690,13 @@
                             <span>${item.name}</span>
                             <span style="font-size:0.8rem; color:#888;">QTY: 1</span>
                         </div>
-                        <div class="order-summary-price">${item.price.toLocaleString('vi-VN')} VND</div>
+                        <div class="order-summary-price">${item.price.toLocaleString('en-US')} VND</div>
                     </div>
                 `;
             });
             
             // Update Totals
-            const formattedTotal = total.toLocaleString('vi-VN') + ' VND';
+            const formattedTotal = total.toLocaleString('en-US') + ' VND';
             document.getElementById('checkout-subtotal').innerText = formattedTotal;
             document.getElementById('checkout-grand-total').innerText = formattedTotal;
             
@@ -1310,7 +1712,7 @@
         }
 
         function confirmOrder() {
-            alert("THÀNH CÔNG! Đơn hàng của bạn đã được ghi nhận. Cảm ơn bạn đã đồng hành cùng FANCY UNITED ESPORTS.");
+            alert("SUCCESS! Your order has been placed. Thank you for supporting FANCY UNITED ESPORTS.");
             cart = [];
             updateCartUI();
             closeCheckout();
@@ -1349,6 +1751,184 @@
                     }
                 }
             }
+        });
+
+        // --- 3D SHOWCASE LOGIC ---
+        const products3D = [
+            {
+                title: "FANCY PRO JERSEY",
+                fullTitle: "FANCY UNITED PRO JERSEY 2026",
+                price: "590,000 VND",
+                front: "assets/jersey/jersey front.png",
+                back: "assets/jersey/jersey back.png",
+                images: ['assets/jersey/jersey front.png', 'assets/jersey/jersey back.png', 'assets/jersey/z7629489619774_b2bcbbf45fcd94d792e76f284c296b9d.jpg', 'assets/jersey/z7629489620035_6dcc3413e76aea3ca84113d5b62b81a9.jpg', 'assets/jersey/z7629489632752_bda28ef4ae28df0f9cbb7d88d0a75e18.jpg', 'assets/jersey/z7629489637295_bd91c9a893a519166865c2108129e38f.jpg'],
+                tags: ['NEW', 'CUSTOMIZABLE']
+            },
+            {
+                title: "OFFICIAL T-SHIRT",
+                fullTitle: "FANCY UNITED OFFICIAL T-SHIRT",
+                price: "790,000 VND",
+                front: "assets/t-shirt/tshirt-front.png",
+                back: "assets/t-shirt/tshirt-back.png",
+                images: ['assets/t-shirt/tshirt-front.png', 'assets/t-shirt/tshirt-back.png'],
+                tags: ['NEW', 'CLOTHING']
+            },
+            {
+                title: "GRAPHIC TEE",
+                fullTitle: "FANCY UNITED GRAPHIC TEE",
+                price: "530,000 VND",
+                front: "assets/Tee/tee-front.png",
+                back: "assets/Tee/tee-back.png",
+                images: ['assets/Tee/tee-front.png', 'assets/Tee/tee-back.png', '4SC03736.jpg', '4SC03804.jpg', '4SC03822.jpg'],
+                tags: ['NEW', 'CLOTHING']
+            }
+        ];
+
+        function openHeroProductModal() {
+            const product = products3D[currentIndex3D];
+            openModal(product.fullTitle, product.price, product.images, product.tags);
+        }
+
+        let currentIndex3D = 0;
+        let isBack3D = false;
+        let isAnimating3D = false;
+
+        const mainShirt = document.getElementById('main-shirt');
+        const imgFront = document.getElementById('img-front');
+        const imgBack = document.getElementById('img-back');
+        const shirtTitle = document.getElementById('shirt-title');
+        const bgGlow = document.getElementById('bg-glow');
+        const showcase = document.getElementById('showcase');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function flipShirt() {
+            if (isAnimating3D) return;
+            isAnimating3D = true;
+            
+            const targetRot = isBack3D ? 0 : 180;
+            
+            gsap.to(mainShirt, {
+                rotationY: targetRot,
+                rotationX: 0,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    isAnimating3D = false;
+                    isBack3D = !isBack3D;
+                }
+            });
+
+            // Animate the rotation icon too
+            gsap.to("#rotate-btn i", {
+                rotation: "+=180",
+                duration: 0.8,
+                ease: "power2.inOut"
+            });
+        }
+
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                const index = parseInt(thumb.dataset.index);
+                if (index === currentIndex3D || isAnimating3D) return;
+                changeShirt(index);
+            });
+        });
+
+        function changeShirt(newIndex) {
+            isAnimating3D = true;
+            const nextProduct = products3D[newIndex];
+            
+            thumbs[currentIndex3D].classList.remove('active');
+            thumbs[newIndex].classList.add('active');
+            
+            const tl = gsap.timeline({ onComplete: () => {
+                currentIndex3D = newIndex;
+                isAnimating3D = false;
+                isBack3D = false;
+            }});
+
+            tl.to(shirtTitle, { opacity: 0, y: -20, duration: 0.3 }, 0);
+            
+            const direction = newIndex > currentIndex3D ? 1 : -1;
+            const currentRot = isBack3D ? 180 : 0;
+            const midRot = currentRot + (90 * direction);
+
+            tl.to(mainShirt, {
+                rotationY: midRot,
+                rotationX: 0,
+                scale: 0.7,
+                duration: 0.4,
+                ease: "power2.in",
+                onComplete: () => {
+                    imgFront.src = nextProduct.front;
+                    imgBack.src = nextProduct.back;
+                    shirtTitle.textContent = nextProduct.title;
+                    
+                    gsap.fromTo(bgGlow, { opacity: 0.8, scale: 1.5 }, { opacity: 0.1, scale: 1, duration: 1 });
+                    gsap.set(mainShirt, { rotationY: -90 * direction });
+                }
+            }, 0);
+
+            tl.to(mainShirt, {
+                rotationY: 0,
+                scale: 1,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+
+            tl.to(shirtTitle, { opacity: 1, y: 0, duration: 0.3 }, "-=0.2");
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (isAnimating3D) return;
+            const heroContainer = document.querySelector('.hero-3d-container');
+            if (!heroContainer) return;
+            
+            // Only trigger parallax if we are hovering over the hero section
+            const rect = heroContainer.getBoundingClientRect();
+            if (e.clientY < rect.top || e.clientY > rect.bottom) return;
+
+        // Use clientX/Y to ignore scroll offset and calculate relative to viewport center
+        const xAxis = (window.innerWidth / 2 - e.clientX) / 30;
+        
+        // Calculate center of the hero container
+        const heroCenterY = rect.top + (rect.height / 2);
+        const yAxis = (heroCenterY - e.clientY) / 30;
+        });
+
+        function flipShirt() {
+            if (isAnimating3D) return;
+            isAnimating3D = true;
+            
+            const targetRot = isBack3D ? 0 : 180;
+            
+            gsap.to(mainShirt, {
+                rotationY: targetRot,
+                rotationX: 0,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    isAnimating3D = false;
+                    isBack3D = !isBack3D;
+                }
+            });
+
+            // Animate rotation icon too
+            gsap.to("#rotate-btn i", {
+                rotation: "+=180",
+                duration: 0.8,
+                ease: "power2.inOut"
+            });
+        }
+
+        showcase.addEventListener('click', flipShirt);
+
+        // --- FILTER & SORT LOGIC ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+            });
         });
     </script>
 </body>
